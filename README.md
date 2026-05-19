@@ -146,17 +146,19 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 
 			![Wajah Watermarked](data/output/wajah_watermarked.jpg)
 
-	- Visualisasi Y channel awal: data/output/cover_y_channel.png
+	- Visualisasi embedding (langkah output)
 
-		![Y Channel Cover](data/output/cover_y_channel.png)
+		- `data/output/cover_y_channel.png`
 
-	- Visualisasi watermark biner: data/output/watermark_binary.png
+			![Y Channel Cover](data/output/cover_y_channel.png)
 
-		![Watermark Biner](data/output/watermark_binary.png)
+		- `data/output/watermark_binary.png`
 
-	- Visualisasi Y channel setelah embedding: data/output/watermarked_y_channel.png
+			![Watermark Biner](data/output/watermark_binary.png)
 
-		![Y Channel Watermarked](data/output/watermarked_y_channel.png)
+		- `data/output/watermarked_y_channel.png`
+
+			![Y Channel Watermarked](data/output/watermarked_y_channel.png)
 
 2. Kompresi gambar
 
