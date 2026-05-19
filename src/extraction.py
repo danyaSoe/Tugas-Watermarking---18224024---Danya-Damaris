@@ -3,8 +3,7 @@ import numpy as np
 from pathlib import Path
 
 
-def extract_watermark_from_images(watermarked_image, cover_path):
-    # Accept either an image array or a path to image
+def extract_watermark(watermarked_image, cover_path):
     if isinstance(watermarked_image, (str, Path)):
         wm_img = cv2.imread(str(watermarked_image))
     else:

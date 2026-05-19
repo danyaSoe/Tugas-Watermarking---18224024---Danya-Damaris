@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 from pathlib import Path
 from src.embedding import embed_watermark
-from src.extraction import extract_watermark_from_images
+from src.extraction import extract_watermark
 
 
 def main():
@@ -45,7 +45,7 @@ def main():
         cv2.imwrite(str(compressed_filename), img_watermarked, [int(cv2.IMWRITE_JPEG_QUALITY), qf])
 
         img_compressed = cv2.imread(str(compressed_filename))
-        extracted_wm_binary = extract_watermark_from_images(img_compressed, cover_file)
+        extracted_wm_binary = extract_watermark(img_compressed, cover_file)
 
         numerator = np.sum(wm_orig_binary * extracted_wm_binary)
         denominator = np.sqrt(np.sum(wm_orig_binary**2) * np.sum(extracted_wm_binary**2))
@@ -67,7 +67,6 @@ def main():
         status = "VALID" if (nc >= 0.5 and ber <= 0.3) else "RUSAK"
         print(f"QF = {qf:2d} -> Ukuran: {file_size:6.2f} KB | NC: {nc:.3f} | BER: {ber:.3f} | PSNR: {psnr_c:.2f} dB | Status: {status}")
 
-    # Plotting and saving figures
     plt.style.use('dark_background')
     fig_plot, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
     fig_plot.suptitle('Grafik Kinerja Metrik Kuantitatif terhadap Kompresi', fontsize=14, fontweight='bold', y=0.98)
@@ -96,15 +95,6 @@ def main():
 
     fig_plot.tight_layout()
     fig_plot.savefig(str(reports_dir / 'grafik_kinerja_dark.png'), dpi=200)
-
-    plt.style.use('default')
-    fig_plot2, (ax3, ax4) = plt.subplots(1, 2, figsize=(14, 6))
-    ax3.plot(quality_factors, nc_values, marker='o')
-    ax3.set_title('Normalized Correlation (NC) vs QF')
-    ax4.plot(quality_factors, ber_values, marker='s')
-    ax4.set_title('Bit Error Rate (BER) vs QF')
-    fig_plot2.tight_layout()
-    fig_plot2.savefig(str(reports_dir / 'grafik_kinerja_light.png'), dpi=200)
 
     print('\nPlot disimpan di folder `reports/`.')
 

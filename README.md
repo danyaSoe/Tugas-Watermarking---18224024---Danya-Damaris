@@ -32,7 +32,7 @@ tugas-watermarking-jpeg/
 │
 ├── reports/
 │   ├── grafik_kinerja_dark.png
-│   └── grafik_kinerja_light.png
+│   └── analisis_visual.png
 │
 ├── .gitignore
 ├── README.md
@@ -63,6 +63,3 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 - Watermark biner (32×32) diekstrak dan dinilai menggunakan NC/BER.
 - Threshold sederhana: `NC >= 0.5` dan `BER <= 0.3` dianggap `VALID`.
 - Eksperimen tipikal menunjukkan watermark bertahan sampai QF rendah tertentu, sedangkan QF sangat kecil (mis. 5 atau 1) biasanya merusak (BER tinggi).
-
----
-Jika Anda ingin saya menjalankan skrip ini di lingkungan Anda (atau menambahkan opsi CLI), beri tahu saya.
