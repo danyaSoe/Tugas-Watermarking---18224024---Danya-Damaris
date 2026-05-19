@@ -250,7 +250,7 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 		psnr_values.append(float(psnr_c))
 		```
 
-	- Penentuan status
+	- Penentuan status. Threshold NC di angka 0.5 berarti kemiripan gambar hasil ekstraksi masih di atas 50% sehingga bentuk watermark masih dapat dikenali. Sementara, threshold BER di angka 30% karena jika bit yang rusak sudah menembus angka 30%, algoritma rekonstruksi visual atau mata manusia umumnya sudah tidak mampu lagi mengenali watermark biner yang disisipkan.
 
 		```python
 		status = "VALID" if (nc >= 0.5 and ber <= 0.3) else "RUSAK"
