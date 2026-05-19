@@ -35,6 +35,8 @@ def main():
     ber_values = []
     psnr_values = []
     file_sizes = []
+    compressed_images = []
+    extracted_wms = []
 
     print("--- Memulai Evaluasi Ketahanan DCT Watermarking terhadap Kompresi JPEG --- \n")
 
@@ -59,6 +61,8 @@ def main():
 
         file_size = os.path.getsize(str(compressed_filename)) / 1024
         file_sizes.append(float(file_size))
+        compressed_images.append(img_compressed.copy())
+        extracted_wms.append(extracted_wm_binary.copy())
 
         status = "VALID" if (nc >= 0.5 and ber <= 0.3) else "RUSAK"
         print(f"QF = {qf:2d} -> Ukuran: {file_size:6.2f} KB | NC: {nc:.3f} | BER: {ber:.3f} | PSNR: {psnr_c:.2f} dB | Status: {status}")
@@ -103,6 +107,37 @@ def main():
     fig_plot2.savefig(str(reports_dir / 'grafik_kinerja_light.png'), dpi=200)
 
     print('\nPlot disimpan di folder `reports/`.')
+
+    plt.style.use('default')
+    n = len(quality_factors)
+    fig_img, axes = plt.subplots(n, 2, figsize=(10, 3.5 * n))
+    fig_img.suptitle('Analisis Visual Citra Terkompresi & Ekstraksi Watermark', fontsize=14, fontweight='bold', y=0.99)
+
+    for idx, qf in enumerate(quality_factors):
+        img_c = compressed_images[idx]
+        wm_bin = extracted_wms[idx]
+        psnr_c = psnr_values[idx]
+        file_size = file_sizes[idx]
+        nc = nc_values[idx]
+        ber = ber_values[idx]
+        status = "VALID" if (nc >= 0.5 and ber <= 0.3) else "RUSAK"
+        color_status = 'green' if status == 'VALID' else 'red'
+
+        ax_l = axes[idx, 0] if n > 1 else axes[0]
+        img_rgb = cv2.cvtColor(img_c, cv2.COLOR_BGR2RGB)
+        ax_l.imshow(img_rgb)
+        ax_l.set_title(f"Foto Terkompresi (QF = {qf})\nUkuran: {file_size:.2f} KB | PSNR: {psnr_c:.2f} dB", fontsize=10)
+        ax_l.axis('off')
+
+        ax_r = axes[idx, 1] if n > 1 else axes[1]
+        ax_r.imshow(wm_bin * 255, cmap='gray')
+        ax_r.set_title(f"Ekstraksi Watermark (QF = {qf})\nNC: {nc:.3f} | BER: {ber:.3f}", fontsize=10)
+        ax_r.text(1.05, 0.5, status, transform=ax_r.transAxes, color=color_status, fontweight='bold', fontsize=12, va='center')
+        ax_r.axis('off')
+
+    plt.tight_layout()
+    fig_img.savefig(str(reports_dir / 'analisis_visual.png'), dpi=200)
+    print('Gambar analisis visual disimpan di `reports/analisis_visual.png`.')
 
 
 if __name__ == '__main__':
