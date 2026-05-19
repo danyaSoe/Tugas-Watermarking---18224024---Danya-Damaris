@@ -64,5 +64,3 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 - Threshold sederhana: `NC >= 0.5` dan `BER <= 0.3` dianggap `VALID`.
 - Eksperimen tipikal menunjukkan watermark bertahan sampai QF rendah tertentu, sedangkan QF sangat kecil (mis. 5 atau 1) biasanya merusak (BER tinggi).
 
----
-Jika Anda ingin saya menjalankan skrip ini di lingkungan Anda (atau menambahkan opsi CLI), beri tahu saya.
