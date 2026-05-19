@@ -132,6 +132,20 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 		watermarked_image = cv2.cvtColor(yuv_watermarked, cv2.COLOR_YUV2BGR)
 		```
 
+	- Visualisasi embedding (langkah output)
+
+		- `data/output/cover_y_channel.png`
+
+			![Y Channel Cover](data/output/cover_y_channel.png)
+
+		- `data/output/watermark_binary.png`
+
+			![Watermark Biner](data/output/watermark_binary.png)
+
+		- `data/output/watermarked_y_channel.png`
+
+			![Y Channel Watermarked](data/output/watermarked_y_channel.png)
+
 	- Contoh file (input / output)
 
 		- Wajah (input): data/input/wajah.JPG
@@ -146,19 +160,6 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 
 			![Wajah Watermarked](data/output/wajah_watermarked.jpg)
 
-	- Visualisasi embedding (langkah output)
-
-		- `data/output/cover_y_channel.png`
-
-			![Y Channel Cover](data/output/cover_y_channel.png)
-
-		- `data/output/watermark_binary.png`
-
-			![Watermark Biner](data/output/watermark_binary.png)
-
-		- `data/output/watermarked_y_channel.png`
-
-			![Y Channel Watermarked](data/output/watermarked_y_channel.png)
 
 2. Kompresi gambar
 
@@ -233,10 +234,6 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 		```
 
 	- Hasil visualisasi ekstraksi
-
-		- `reports/extracted_wm_qf_90.png` (contoh ekstraksi watermark pada QF 90)
-
-			![Ekstraksi Watermark QF 90](reports/extracted_wm_qf_90.png)
 
 		- `reports/analisis_visual.png`
 
