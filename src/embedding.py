@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
 from pathlib import Path
+from typing import Optional, Tuple
 
 
-def embed_watermark(cover_path, watermark_path, alpha=15.0):
+def embed_watermark(cover_path, watermark_path, alpha=15.0, save_intermediate: bool = False, output_dir: Optional[Path] = None) -> Tuple[np.ndarray, np.ndarray]:
     cover_path = Path(cover_path)
     watermark_path = Path(watermark_path)
 
@@ -46,6 +47,16 @@ def embed_watermark(cover_path, watermark_path, alpha=15.0):
     y_watermarked = np.clip(y_float, 0, 255).astype(np.uint8)
     yuv_watermarked = cv2.merge((y_watermarked, u, v))
     watermarked_image = cv2.cvtColor(yuv_watermarked, cv2.COLOR_YUV2BGR)
+
+    if save_intermediate:
+        if output_dir is None:
+            output_dir = cover_path.parent
+        output_dir = Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+
+        cv2.imwrite(str(output_dir / 'watermark_binary.png'), wm_binary * 255)
+        cv2.imwrite(str(output_dir / 'cover_y_channel.png'), y)
+        cv2.imwrite(str(output_dir / 'watermarked_y_channel.png'), y_watermarked)
 
     # Resize back to original cover size
     watermarked_full = cv2.resize(watermarked_image, (w, h))

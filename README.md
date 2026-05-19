@@ -146,6 +146,18 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 
 			![Wajah Watermarked](data/output/wajah_watermarked.jpg)
 
+	- Visualisasi Y channel awal: data/output/cover_y_channel.png
+
+		![Y Channel Cover](data/output/cover_y_channel.png)
+
+	- Visualisasi watermark biner: data/output/watermark_binary.png
+
+		![Watermark Biner](data/output/watermark_binary.png)
+
+	- Visualisasi Y channel setelah embedding: data/output/watermarked_y_channel.png
+
+		![Y Channel Watermarked](data/output/watermarked_y_channel.png)
+
 2. Kompresi gambar
 
 	- Citra yang mengandung watermark disimpan ke dalam format `.jpg` menggunakan parameter `cv2.IMWRITE_JPEG_QUALITY` untuk Quality Factor (QF).
@@ -158,33 +170,33 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 
 	- Semua hasil kompresi (contoh)
 
-		- `data/output/compressed_qf_90.jpg`
+	- `data/output/compressed_qf_90.jpg`
 
-			![Compressed QF 90](data/output/compressed_qf_90.jpg)
+		![Compressed QF 90](data/output/compressed_qf_90.jpg)
 
-		- `data/output/compressed_qf_70.jpg`
+	- `data/output/compressed_qf_70.jpg`
 
-			![Compressed QF 70](data/output/compressed_qf_70.jpg)
+		![Compressed QF 70](data/output/compressed_qf_70.jpg)
 
-		- `data/output/compressed_qf_50.jpg`
+	- `data/output/compressed_qf_50.jpg`
 
-			![Compressed QF 50](data/output/compressed_qf_50.jpg)
+		![Compressed QF 50](data/output/compressed_qf_50.jpg)
 
-		- `data/output/compressed_qf_30.jpg`
+	- `data/output/compressed_qf_30.jpg`
 
-			![Compressed QF 30](data/output/compressed_qf_30.jpg)
+		![Compressed QF 30](data/output/compressed_qf_30.jpg)
 
-		- `data/output/compressed_qf_10.jpg`
+	- `data/output/compressed_qf_10.jpg`
 
-			![Compressed QF 10](data/output/compressed_qf_10.jpg)
+		![Compressed QF 10](data/output/compressed_qf_10.jpg)
 
-		- `data/output/compressed_qf_5.jpg`
+	- `data/output/compressed_qf_5.jpg`
 
-			![Compressed QF 5](data/output/compressed_qf_5.jpg)
+		![Compressed QF 5](data/output/compressed_qf_5.jpg)
 
-		- `data/output/compressed_qf_1.jpg`
+	- `data/output/compressed_qf_1.jpg`
 
-			![Compressed QF 1](data/output/compressed_qf_1.jpg)
+		![Compressed QF 1](data/output/compressed_qf_1.jpg)
 
 3. Ekstraksi watermark
 
@@ -219,6 +231,10 @@ Hasil citra akan disimpan di `data/output/` dan grafik performa akan tersimpan d
 		```
 
 	- Hasil visualisasi ekstraksi
+
+		- `reports/extracted_wm_qf_90.png` (contoh ekstraksi watermark pada QF 90)
+
+			![Ekstraksi Watermark QF 90](reports/extracted_wm_qf_90.png)
 
 		- `reports/analisis_visual.png`
 

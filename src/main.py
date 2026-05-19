@@ -22,7 +22,12 @@ def main():
     if not cover_file.exists() or not watermark_file.exists():
         raise FileNotFoundError('Letakkan `wajah.JPG` dan `watermark.png` di folder data/input terlebih dahulu.')
 
-    img_watermarked, wm_orig_binary = embed_watermark(cover_file, watermark_file)
+    img_watermarked, wm_orig_binary = embed_watermark(
+        cover_file,
+        watermark_file,
+        save_intermediate=True,
+        output_dir=output_dir,
+    )
     cv2.imwrite(str(output_dir / 'wajah_watermarked.jpg'), img_watermarked, [int(cv2.IMWRITE_JPEG_QUALITY), 95])
 
     img_orig = cv2.imread(str(cover_file))
@@ -46,6 +51,7 @@ def main():
 
         img_compressed = cv2.imread(str(compressed_filename))
         extracted_wm_binary = extract_watermark(img_compressed, cover_file)
+        cv2.imwrite(str(reports_dir / f'extracted_wm_qf_{qf}.png'), extracted_wm_binary * 255)
 
         numerator = np.sum(wm_orig_binary * extracted_wm_binary)
         denominator = np.sqrt(np.sum(wm_orig_binary**2) * np.sum(extracted_wm_binary**2))
